@@ -45,3 +45,23 @@
         name: httpd
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
+
+      - hosts: localhost
+  tasks:
+  - name: Task with tag1
+    debug:
+      msg: "This is tag1 task"
+    tags: 
+      - tag1
+
+  - name: Task with tag2
+    debug:
+      msg: "This is tag2 task"
+    tags: 
+      - tag2
+
+  - name: Task with skiptag1
+    debug:
+      msg: "This is skiptag1 task"
+    tags: 
+      - skiptag1
