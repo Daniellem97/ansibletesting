@@ -5,12 +5,12 @@
     - vars/default.yml
   tasks:
      - name: Install Apache packages
-    become: true
-    ansible.builtin.yum:
-      name: httpd
-      state: present
-    tags:
-      - setup
+       become: true
+         ansible.builtin.yum:
+       name: httpd
+       state: present
+       tags:
+         - setup
 
     - name: Create document root
       become: true
