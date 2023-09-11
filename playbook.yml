@@ -4,13 +4,13 @@
   vars_files:
     - vars/default.yml
   tasks:
-     - name: Install Apache packages
-       become: true
-       ansible.builtin.yum:
-         name: httpd
-         state: present
-       tags:
-         - setup
+    - name: Install Apache packages
+      become: true
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      tags:
+        - setup
 
     - name: Create document root
       become: true
@@ -27,13 +27,13 @@
         mode: 0644
       notify: Restart server
 
-   - name: Copy web pages
-     become: true
-     ansible.builtin.template:
-       src: index.html.j2
-       dest: "{{ doc_root }}/index.html"
-     tags:
-       - content
+    - name: Copy web pages
+      become: true
+      ansible.builtin.template:
+        src: index.html.j2
+        dest: "{{ doc_root }}/index.html"
+      tags:
+        - content
 
     - name: Ensure httpd is running
       become: true
@@ -49,3 +49,4 @@
         name: httpd
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
+
