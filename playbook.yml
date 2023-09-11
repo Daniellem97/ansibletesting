@@ -12,6 +12,12 @@
       tags:
         - setup
 
+    - name: Message after task with tag
+      debug:
+       msg: "This task will run after the task with the tag."
+      tags:
+        -content
+
     - name: Create document root
       become: true
       ansible.builtin.file:
@@ -50,8 +56,3 @@
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
 
-   - name: Message after task with tag
-     debug:
-       msg: "This task will run after the task with the tag."
-     tags:
-       -content
