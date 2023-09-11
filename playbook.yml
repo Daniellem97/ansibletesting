@@ -6,9 +6,9 @@
   tasks:
      - name: Install Apache packages
        become: true
-         ansible.builtin.yum:
-       name: httpd
-       state: present
+       ansible.builtin.yum:
+         name: httpd
+         state: present
        tags:
          - setup
 
