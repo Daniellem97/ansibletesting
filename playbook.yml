@@ -16,7 +16,7 @@
       debug:
        msg: "This task will run after the task with the tag."
       tags:
-        -content
+        - setup
 
     - name: Create document root
       become: true
