@@ -12,6 +12,12 @@
       tags:
         - setup
 
+    - name: Debug Message - Tagged with 'test'
+      ansible.builtin.debug:
+        msg: "This task should run when the 'test' tag is targeted"
+      tags:
+      - test
+
     - name: Message after task with tag
       debug:
        msg: "This task will run after the task with the tag."
