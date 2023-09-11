@@ -9,6 +9,8 @@
       ansible.builtin.yum:
         name: httpd
         state: present
+         tags:
+          - setup
 
     - name: Create document root
       become: true
@@ -30,6 +32,8 @@
       ansible.builtin.template:
         src: index.html.j2
         dest: "{{ doc_root }}/index.html"
+        tags:
+    - content
 
     - name: Ensure httpd is running
       become: true
@@ -45,19 +49,3 @@
         name: httpd
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
-
-   - name: Install Apache packages
-  become: true
-  ansible.builtin.yum:
-    name: httpd
-    state: present
-  tags:
-    - setup
-
-- name: Copy web pages
-  become: true
-  ansible.builtin.template:
-    src: index.html.j2
-    dest: "{{ doc_root }}/index.html"
-  tags:
-    - content
