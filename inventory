@@ -1,0 +1,10 @@
+webserver1 ansible_host=192.168.1.101
+webserver2 ansible_host=192.168.1.102
+webserver3 ansible_host=192.168.1.103
+webserver4 ansible_host=192.168.1.104
+webserver5 ansible_host=192.168.1.105
+webserver1 ansible_host=192.168.1.106
+webserver2 ansible_host=192.168.1.107
+webserver3 ansible_host=192.168.1.108
+webserver4 ansible_host=192.168.1.109
+webserver5 ansible_host=192.168.1.110
