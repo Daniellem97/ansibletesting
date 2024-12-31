@@ -5,3 +5,4 @@ regions:
 filters:
   tag-key: Ansible
   instance-state-name: running
+
