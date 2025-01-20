@@ -9,6 +9,7 @@
       ansible.builtin.yum:
         name: httpd
         state: present
+        use_backend: yum
     - name: Debug Message - Tagged with 'test'
       ansible.builtin.debug:
         msg: "This task should run when the 'test' tag is targeted"
