@@ -9,6 +9,11 @@
       ansible.builtin.yum:
         name: httpd
         state: present
+    - name: Debug Message - Tagged with 'test'
+      ansible.builtin.debug:
+        msg: "This task should run when the 'test' tag is targeted"
+      tags:
+      - test
 
     - name: Ensure the test file exists
       file:
