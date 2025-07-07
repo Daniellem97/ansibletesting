@@ -1,3 +1,12 @@
+- name: Launch EC2 Instance
+  hosts: localhost
+  gather_facts: false
+  vars:
+    instance_type: t2.micro
+    key_name: my-key
+    image_id: ami-0c55b159cbfafe1f0  # Replace with your region’s AMI
+    region: us-east-1
+
 - hosts: localhost
   gather_facts: true
   ignore_unreachable: true
