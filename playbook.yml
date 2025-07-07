@@ -60,3 +60,7 @@
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Ensure Apache is installed
+  apt:
+    name: apache2
+    state: present
