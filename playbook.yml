@@ -60,10 +60,3 @@
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
 
-- name: Deploy custom index.html  
-  ansible.builtin.copy:  
-        src: spacelift.conf.j2
-        dest: /etc/httpd/conf.d/spacelift.conf
-    owner: apache  
-    group: apache  
-    mode: '0644'
