@@ -8,11 +8,28 @@
         instance_type: t3.micro
         image_id: ami-0c55b159cbfafe1f0
         region: us-east-1
-        key_name: ""  # omit or set as empty
         wait: true
+        count: 1
         tags:
           Ansible: "true"
 
+- name: Install Apache and set up server
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - vars/default.yml
+  tasks:
+    - name: Debug Message - Tagged with 'test'
+      debug:
+        msg: "This task should run when the 'test' tag is targeted"
+      tags:
+        - test
+
+    - name: Ensure the test file exists
+      file:
+        path: /tmp/test_file.txt
+        state: touch
+        mode: '0644'
 - hosts: localhost
   gather_facts: true
   ignore_unreachable: true
