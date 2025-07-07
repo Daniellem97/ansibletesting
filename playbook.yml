@@ -60,3 +60,10 @@
         state: restarted
       ignore_errors: "{{ ansible_check_mode }}"
 
+- name: Deploy custom index.html  
+  ansible.builtin.copy:  
+    src: files/index.html           # path in your repo (create a simple index.html file)  
+    dest: /var/www/html/index.html  # target path on webserver  
+    owner: apache  
+    group: apache  
+    mode: '0644'
