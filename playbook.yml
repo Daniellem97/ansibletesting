@@ -62,8 +62,8 @@
 
 - name: Deploy custom index.html  
   ansible.builtin.copy:  
-    src: files/index.html           # path in your repo (create a simple index.html file)  
-    dest: /var/www/html/index.html  # target path on webserver  
+        src: spacelift.conf.j2
+        dest: /etc/httpd/conf.d/spacelift.conf
     owner: apache  
     group: apache  
     mode: '0644'
