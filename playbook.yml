@@ -1,7 +1,13 @@
-- name: Create a file with versioned content
-  ansible.builtin.copy:
-    dest: /tmp/test_cm_file.txt
-    content: "Version 1"
-    mode: '0644'
-  tags:
-    - test
+- name: Test file creation for config management
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Create a file with versioned content
+      ansible.builtin.copy:
+        dest: /tmp/test_cm_file.txt
+        content: "Version 1"
+        mode: '0644'
+      tags:
+        - test
