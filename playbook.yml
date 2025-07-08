@@ -1,29 +1,31 @@
-- name: Launch EC2 without key
+- name: Launch an EC2 instance for testing
   hosts: localhost
+  connection: local
   gather_facts: false
   tasks:
-    - name: Launch instance
+    - name: Launch t3.micro EC2 instance 
       amazon.aws.ec2_instance:
-        name: no-key-instance
+        name: "test-instance"
         instance_type: t3.micro
-        image_id: ami-0c55b159cbfafe1f0
-        region: us-east-1
-        wait: true
-        count: 1
-        tags:
-          Ansible: "true"
+        image_id: ami-0c55b159cbfafe1f0   # example Amazon Linux AMI ID (region-specific)
+        region: us-east-1                # ensure this matches the AMI’s region
+        wait: true                       # wait until instance is running
+      register: ec2_result
 
-- name: Install Apache and set up server
-  hosts: localhost
-  gather_facts: true
-  vars_files:
-    - vars/default.yml
-  tasks:
-    - name: Debug Message - Tagged with 'test'
+    - name: Show new instance ID
       debug:
-        msg: "This task should run when the 'test' tag is targeted"
-      tags:
-        - test
+        msg: "Launched EC2 instance: {{ ec2_result.instance_ids[0] }}"
+          
+    - name: Create a test S3 bucket 
+      amazon.aws.s3_bucket:
+        name: "my-ansible-test-bucket-12345"  # bucket name must be globally unique
+        state: present
+        region: us-east-1
+      register: s3_result
+
+    - name: Show S3 bucket creation result
+      debug:
+        msg: "S3 bucket created: {{ s3_result.bucket.name }}"
 
     - name: Ensure the test file exists
       file:
