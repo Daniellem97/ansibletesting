@@ -7,7 +7,7 @@
     - name: Create a file with versioned content
       ansible.builtin.copy:
         dest: /tmp/test_cm_file.txt
-        content: "Version 1"
+        content: "Version 2"
         mode: '0644'
       tags:
         - test
