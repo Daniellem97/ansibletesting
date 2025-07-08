@@ -1,32 +1,12 @@
-- name: Launch an EC2 instance for testing
-  hosts: localhost
-  connection: local
-  gather_facts: false
-  tasks:
-    - name: Launch t3.micro EC2 instance 
-      amazon.aws.ec2_instance:
-        name: "test-instance"
-        instance_type: t3.micro
-        image_id: ami-0c55b159cbfafe1f0   # example Amazon Linux AMI ID (region-specific)
-        region: us-east-1                # ensure this matches the AMI’s region
-        wait: true                       # wait until instance is running
-      register: ec2_result
+- name: Run a test nginx container
+  community.docker.docker_container:
+    name: test-nginx
+    image: nginx:latest
+    state: started
+    published_ports:
+      - "8080:80"
 
-    - name: Show new instance ID
-      debug:
-        msg: "Launched EC2 instance: {{ ec2_result.instance_ids[0] }}"
-          
-    - name: Create a test S3 bucket 
-      amazon.aws.s3_bucket:
-        name: "my-ansible-test-bucket-12345"  # bucket name must be globally unique
-        state: present
-        region: us-east-1
-      register: s3_result
-
-    - name: Show S3 bucket creation result
-      debug:
-        msg: "S3 bucket created: {{ s3_result.bucket.name }}"
-
+      
     - name: Ensure the test file exists
       file:
         path: /tmp/test_file.txt
