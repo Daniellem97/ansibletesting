@@ -26,6 +26,7 @@
         msg: "This task should run when the 'test' tag is targeted"
       tags:
       - test
+      - test2
 
     - name: Ensure the test file exists
       file:
