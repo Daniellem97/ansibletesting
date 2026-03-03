@@ -9,6 +9,6 @@
         dest: /tmp/test_cm_file.txt
         content: "Version 2"
         mode: "0644"
-      when: not ansible_check_mode
+      when: false
       tags:
         - test
